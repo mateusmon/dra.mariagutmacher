@@ -137,12 +137,19 @@ h1 .l2{padding-left:.85em}
 
 
 /* =========== 2 · SOBRE =========== */
-.about{position:relative;margin:12px;border-radius:var(--r);background:var(--about);color:var(--about-ink);padding:clamp(48px,7vw,104px) 0;overflow:hidden;isolation:isolate}
+.about{position:relative;margin:12px;border-radius:var(--r);background:var(--about);color:var(--about-ink);padding:clamp(48px,7vw,104px) 0;overflow:clip;isolation:isolate}
 .about::before{content:"";position:absolute;z-index:-1;right:-12%;top:-35%;width:62%;aspect-ratio:1;background:radial-gradient(closest-side,rgba(198,131,98,.24),rgba(198,131,98,0));pointer-events:none}
 .about .tag{border-color:var(--about-line)}
 .a-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,88px);align-items:center}
 .a-photo{position:relative;margin:0;border-radius:30px;overflow:hidden;aspect-ratio:4/5;background:var(--deep2);box-shadow:0 44px 80px -44px rgba(35,35,33,.55)}
 .a-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
+.about-expand-track{position:relative;height:100svh}
+.js .about-expand-track{height:152svh}
+.about-expand-stage{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;justify-content:center;overflow:clip}
+.about-expand-stage .a-photo{flex:none;width:var(--expand-start-width,min(250px,78vw));height:var(--expand-start-height,min(312px,81svh));aspect-ratio:auto;border-radius:var(--expand-radius,30px);transform:scale(var(--expand-scale,1));transform-origin:center;will-change:transform}
+.about-expand-stage .a-video{height:100%;aspect-ratio:auto;border-radius:inherit}
+.about-expand-hint{position:absolute;bottom:max(22px,env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);margin:0;white-space:nowrap;color:var(--about-muted);font-size:13px;letter-spacing:.02em;opacity:var(--hint-opacity,1);transition:opacity .18s ease}
+.about-expand-hint span{display:inline-block;margin-left:6px;color:var(--about-acc);font-size:18px;vertical-align:-1px}
 .a-text{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(20px,3vw,34px)}
 .statement{font-size:clamp(28px,3.7vw,52px);line-height:1.12;letter-spacing:-.04em;font-weight:400}
 .js .statement .w{color:var(--about-dim);transition:color .35s}
@@ -537,7 +544,6 @@ html:not(.js) .book{display:none}
           <li><a href="#sobre">Sobre</a></li>
           <li><a href="#servicos">Serviços</a></li>
         </ul>
-        <a class="pill-cta" href="#agendar">Agendar<span class="hide-m"> consulta</span></a>
       </nav>
 
       <div class="copy">
@@ -560,10 +566,15 @@ html:not(.js) .book{display:none}
 
 <!-- ============ 2 · SOBRE ============ -->
 <section class="about" id="sobre" aria-label="Sobre">
+  <div class="about-expand-track" id="aboutExpand">
+    <div class="about-expand-stage" id="aboutExpandStage">
+      <figure class="a-photo" id="aboutMedia">
+        <div class="a-video" id="aboutVideo"><video muted playsinline controls preload="metadata" poster="assets/maria-video-capa.png" aria-label="Vídeo da Dra. Maria Luiza no consultório"><source src="assets/video-consultorio.mp4" type="video/mp4"></video></div>
+      </figure>
+      <p class="about-expand-hint" id="aboutExpandHint">Role para ver mais de perto <span aria-hidden="true">↓</span></p>
+    </div>
+  </div>
   <div class="wrap a-grid">
-    <figure class="a-photo">
-      <div class="a-video" id="aboutVideo"><video muted playsinline controls preload="metadata" poster="assets/maria-video-capa.png" aria-label="Vídeo da Dra. Maria Luiza no consultório"><source src="assets/video-consultorio.mp4" type="video/mp4"></video></div>
-    </figure>
     <div class="a-text">
       <span class="tag">Muito prazer, Maria Luiza.</span>
       <p class="statement" id="statement">Seu sorriso tem identidade. Aqui, a estética dental encontra um cuidado atento e um planejamento feito para você.</p>
@@ -1163,6 +1174,49 @@ ready = true; tryGo();
     if (entry.isIntersecting && entry.intersectionRatio >= .35) localVideo.play().catch(() => {});
   }, {threshold:[.35]});
   playWhenVisible.observe(card);
+})();
+
+/* Expansão suave do vídeo da seção Sobre, acompanhando a rolagem nativa. */
+(() => {
+  const track = document.querySelector('#aboutExpand');
+  const stage = document.querySelector('#aboutExpandStage');
+  const hint = document.querySelector('#aboutExpandHint');
+  if (!track || !stage) return;
+
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let frame = 0;
+  const paint = () => {
+    frame = 0;
+    const mobile = innerWidth <= 860;
+    const startWidth = Math.min(mobile ? 250 : 380, innerWidth * (mobile ? .78 : .3));
+    const startHeight = startWidth * 1.25;
+    const maxWidth = Math.min(innerWidth * .9, innerHeight * .68);
+    const maxHeight = Math.min(innerHeight * .82, maxWidth * 1.25);
+    const endWidth = Math.min(maxWidth, maxHeight * .8);
+    let progress = 1;
+
+    if (!reducedMotion) {
+      const travel = Math.max(track.offsetHeight - innerHeight, 1);
+      progress = clamp(-track.getBoundingClientRect().top / travel, 0, 1);
+    }
+
+    const eased = progress * (2 - progress);
+    const scale = 1 + (endWidth / startWidth - 1) * eased;
+    const radius = 30 - 18 * eased;
+    stage.style.setProperty('--expand-start-width', `${startWidth}px`);
+    stage.style.setProperty('--expand-start-height', `${startHeight}px`);
+    stage.style.setProperty('--expand-scale', scale.toFixed(3));
+    stage.style.setProperty('--expand-radius', `${radius.toFixed(1)}px`);
+    if (hint) hint.style.setProperty('--hint-opacity', progress < .08 ? '1' : '0');
+  };
+  const schedule = () => {
+    if (!frame) frame = requestAnimationFrame(paint);
+  };
+
+  if (reducedMotion) track.style.height = '100svh';
+  addEventListener('scroll', schedule, {passive:true});
+  addEventListener('resize', schedule, {passive:true});
+  paint();
 })();
 </script>
 </body>
