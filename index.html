@@ -143,9 +143,6 @@ h1 .l2{padding-left:.85em}
 .a-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,88px);align-items:center}
 .a-photo{position:relative;margin:0;border-radius:30px;overflow:hidden;aspect-ratio:4/5;background:var(--deep2);box-shadow:0 44px 80px -44px rgba(35,35,33,.55)}
 .a-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
-.a-photo figcaption{position:absolute;left:14px;right:14px;bottom:14px;padding:14px 18px;border-radius:20px;color:#fff;background:rgba(18,21,19,.42);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.2);display:flex;flex-direction:column;line-height:1.35}
-.a-photo figcaption b{font-weight:500;font-size:17px;letter-spacing:-.02em}
-.a-photo figcaption span{font-size:14px;opacity:.8}
 .a-text{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(20px,3vw,34px)}
 .statement{font-size:clamp(28px,3.7vw,52px);line-height:1.12;letter-spacing:-.04em;font-weight:400}
 .js .statement .w{color:var(--about-dim);transition:color .35s}
@@ -415,7 +412,7 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 28px;pa
 }
 
 /* Maria Luiza: identidade, fotografia e ajustes de acessibilidade. */
-.logo img{width:54px;height:54px;border-radius:50%;object-fit:cover;flex:none}
+.logo img{width:54px;height:54px;border-radius:50%;object-fit:cover;object-position:50% 28%;flex:none}
 .hero-run{height:100vh;height:100svh;min-height:620px}.hero-sticky{position:relative;top:0;height:100%;min-height:620px}
 .hero-card::before{content:'';position:absolute;z-index:0;inset:0 0 0 43%;background:url("assets/maria-retrato-preto.webp") 52% 28%/cover no-repeat}
 .frames{display:block;left:0;right:auto;width:58%;z-index:1;-webkit-mask-image:linear-gradient(90deg,#000 0%,#000 62%,rgba(0,0,0,.82) 77%,transparent 100%);mask-image:linear-gradient(90deg,#000 0%,#000 62%,rgba(0,0,0,.82) 77%,transparent 100%)}
@@ -427,12 +424,12 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 28px;pa
 .eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px #ff683466}
 h1 .l2{padding-left:.3em}.copy{top:25%}
 .cta i{color:var(--accent-ink)}.cta:hover{background:#fff2ea}.mini img{object-position:center}
-.a-photo img{object-position:50% 48%}.a-photo figcaption{background:rgba(18,21,19,.68)}
+.a-photo img{object-position:50% 48%}
 .space-link{display:inline-flex;align-items:center;gap:10px;color:var(--ink);font-size:15px;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:4px}.space-link span{color:var(--accent);font-size:20px}
 .trust-cta{display:inline-flex;align-items:center;gap:14px;margin-top:42px;padding:15px 22px;border-radius:999px;background:#C68362;color:#25160F;text-decoration:none;font-weight:600;min-height:52px}.trust-cta span{font-size:22px}
 .btn,.cta,.pill-cta,.pick,.rb,.day,.slot{min-height:52px}.btn:focus-visible,.cta:focus-visible,.cta2:focus-visible,.pill-cta:focus-visible,.pick:focus-visible,.rb:focus-visible,.day:focus-visible,.slot:focus-visible,.trust-cta:focus-visible{outline:3px solid #FFB59B;outline-offset:4px}.stage:focus-visible{outline:3px solid #FFB59B;outline-offset:-6px}.hint{color:rgba(255,255,255,.78)}
 .trust{margin:12px;border-radius:var(--r);background:#171A16;color:#fff;padding:clamp(52px,7vw,96px) 0;overflow:hidden}.trust-head{display:grid;grid-template-columns:1fr 1.6fr 1fr;gap:24px;align-items:end}.trust .tag{border-color:rgba(255,255,255,.22);color:rgba(255,255,255,.8);align-self:start}.trust h2{font-size:clamp(34px,4.8vw,64px);font-weight:400;line-height:1;letter-spacing:-.05em;max-width:12ch}.trust-head p{color:rgba(255,255,255,.66);max-width:25ch}.trust-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.18);margin-top:56px}.trust-grid article{padding:22px 24px 8px 0;border-right:1px solid rgba(255,255,255,.18);margin-right:24px}.trust-grid article:last-child{border-right:0;margin-right:0}.trust-grid span{color:#C68362;font-size:13px}.trust-grid h3{font-size:20px;font-weight:500;margin:28px 0 8px}.trust-grid p{font-size:14px;line-height:1.55;color:rgba(255,255,255,.66);max-width:30ch}.trust-photo{position:relative;margin-top:56px;height:260px;border-radius:24px;overflow:hidden}.trust-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 48%;opacity:.78}.trust-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,16,13,.8),rgba(13,16,13,.1))}.trust-photo div{position:absolute;z-index:1;left:28px;bottom:24px;display:flex;flex-direction:column;gap:4px}.trust-photo b{font-size:26px;font-weight:400}.trust-photo span{font-size:14px;color:rgba(255,255,255,.75)}
-.reviews-link{display:inline-block;margin-top:12px;color:#fff;text-decoration:underline;text-underline-offset:4px;font-size:13px}.trust-responsible{grid-column:3;font-size:14px!important}.trust-responsible strong{color:#fff}.privacy-footer{margin-right:16px}
+.reviews-link{display:inline-block;margin-top:12px;color:#fff;text-decoration:underline;text-underline-offset:4px;font-size:13px}.privacy-footer{margin-right:16px}
 .side-photo{margin-top:18px;width:100%;height:210px;border-radius:16px;object-fit:cover;object-position:50% 45%}
 .a-video{position:relative;display:block;aspect-ratio:480/853;border-radius:24px;overflow:hidden;background:#171310;isolation:isolate}.a-video video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%;display:block;filter:brightness(.9);transition:filter .5s ease}.a-video:hover video{filter:brightness(.72)}.a-video::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,21,19,.08),rgba(18,21,19,.05) 55%,rgba(18,21,19,.72));pointer-events:none}.video-play{position:absolute;z-index:2;left:50%;top:50%;transform:translate(-50%,-50%);width:78px;height:78px;border:1px solid rgba(255,255,255,.68);border-radius:50%;display:grid;place-items:center;background:rgba(18,21,19,.5);backdrop-filter:blur(12px);box-shadow:0 14px 36px rgba(0,0,0,.24);transition:transform .25s ease,background .25s ease}.video-play::before{content:"";margin-left:5px;border-left:16px solid #fff;border-top:10px solid transparent;border-bottom:10px solid transparent}.a-video:hover .video-play{transform:translate(-50%,-50%) scale(1.08);background:rgba(198,131,98,.82)}.a-video.is-playing .video-play{display:none}
 .info p+p{margin-top:10px}.info .contact-links{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:14px}
@@ -532,14 +529,13 @@ html:not(.js) .book{display:none}
 
       <nav class="top rise" style="--d:.55s" aria-label="Principal">
         <a class="logo" href="#inicio" aria-label="Dra. Maria Luiza Gutmacher, início">
-          <img src="favicon.svg" data-image="logo" alt="Monograma ML" width="54" height="54">
+          <img src="assets/maria-retrato.webp" data-image="logo" alt="Dra. Maria Luiza Gutmacher" width="54" height="54">
           <span>Dra. Maria Luiza<small>Odontologia inteligente</small></span>
         </a>
         <ul class="pills">
           <li><a class="on" href="#inicio">Início</a></li>
           <li><a href="#sobre">Sobre</a></li>
           <li><a href="#servicos">Serviços</a></li>
-          <li><a href="#agendar">Agendar</a></li>
         </ul>
         <a class="pill-cta" href="#agendar">Agendar<span class="hide-m"> consulta</span></a>
       </nav>
@@ -567,7 +563,6 @@ html:not(.js) .book{display:none}
   <div class="wrap a-grid">
     <figure class="a-photo">
       <div class="a-video" id="aboutVideo"><video muted playsinline controls preload="metadata" poster="assets/maria-video-capa.png" aria-label="Vídeo da Dra. Maria Luiza no consultório"><source src="assets/video-consultorio.mp4" type="video/mp4"></video></div>
-      <figcaption><b>Naturalidade em cada detalhe.</b><span>Dra. Maria Luiza · Brasília, DF</span></figcaption>
     </figure>
     <div class="a-text">
       <span class="tag">Muito prazer, Maria Luiza.</span>
@@ -589,7 +584,7 @@ html:not(.js) .book{display:none}
 
 <section class="trust" id="espaco" aria-label="Por que escolher a Dra. Maria Luiza">
   <div class="wrap">
-    <div class="trust-head"><span class="tag">Por que a Maria Luiza</span><h2>Confiança para cuidar do seu sorriso.</h2><p>Uma experiência pensada para você se sentir seguro em cada etapa.</p><p class="trust-responsible"><strong>Dra. Maria Luiza Gutmacher</strong><br>Cirurgiã-dentista · CRO-DF 17529</p></div>
+    <div class="trust-head"><span class="tag">Por que a Maria Luiza</span><h2>Confiança para cuidar do seu sorriso.</h2><p>Uma experiência pensada para você se sentir seguro em cada etapa.</p></div>
     <div class="trust-grid">
       <article class="trust-rating"><span>00</span><h3><b id="reviewRating">5,0</b> ★ no Google</h3><a class="reviews-link" href="https://www.google.com/search?kgmid=/g/11zxthln40&hl=pt-BR&q=Dra+Maria+Luiza+Gutmacher" target="_blank" rel="noopener">Ver avaliações no Google ↗</a></article>
       <article><span>01</span><h3>Planejamento individual</h3><p>Entendemos suas necessidades antes de indicar qualquer caminho.</p></article>
@@ -671,7 +666,7 @@ html:not(.js) .book{display:none}
     </div>
 
     <aside class="b-side" aria-label="Contato da Dra. Maria Luiza Gutmacher">
-      <div class="who"><img class="av" src="favicon.svg" data-image="logo" alt=""><div><b>Dra. Maria Luiza</b><span>Estética dental com naturalidade</span></div></div>
+      <div class="who"><img class="av" src="assets/maria-retrato.webp" data-image="logo" alt=""><div><span>Estética dental com naturalidade</span></div></div>
       <dl class="sum">
         <div><dt>Serviço</dt><dd id="sSvc">—</dd></div>
         <div><dt>Dia</dt><dd id="sDay">—</dd></div>

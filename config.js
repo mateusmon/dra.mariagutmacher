@@ -2,7 +2,7 @@
 const CLINIC = {
   instagram: 'https://www.instagram.com/dra.mariagutmacher/',
   handle: '@dra.mariagutmacher',
-  images: {logo:'favicon.svg', clinic:'assets/maria-retrato.webp', reception:'assets/maria-consultorio.webp'}
+  images: {logo:'assets/maria-retrato.webp', clinic:'assets/maria-retrato.webp', reception:'assets/maria-consultorio.webp'}
 };
 const WHATSAPP = '5561996045073';
 const PHONE_LABEL = '(61) 99604-5073';
