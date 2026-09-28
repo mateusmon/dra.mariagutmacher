@@ -517,7 +517,7 @@ html:not(.js) .book{display:none}
 <section class="hero-run" id="inicio" aria-label="Início">
   <div class="hero-sticky">
     <div class="hero-card" id="heroCard">
-      <video class="hero-video" id="heroVideo" muted autoplay loop playsinline preload="auto" poster="assets/intro-dental.webp" aria-label="Vídeo de clareamento dental da Dra. Maria Luiza Gutmacher"><source src="assets/hero-clareamento.mp4" type="video/mp4"></video>
+      <video class="hero-video" id="heroVideo" muted autoplay loop playsinline webkit-playsinline preload="auto" poster="assets/intro-dental.webp" aria-label="Vídeo de clareamento dental da Dra. Maria Luiza Gutmacher"><source src="assets/hero-clareamento.mp4" type="video/mp4"></video>
       <div class="frames" id="frames" aria-hidden="true" style="display:none"><canvas id="cv"></canvas></div>
       <div class="shade"></div>
 
@@ -1122,14 +1122,32 @@ ready = true; tryGo();
   setTimeout(finish, 3250);
 })();
 
-/* vídeo do Instagram: mantém uma capa elegante e carrega o player oficial só ao ativar */
+/* Mantém o vídeo do hero reproduzindo em navegadores móveis que suspendem o autoplay. */
 (() => {
   const heroVideo = document.querySelector('#heroVideo');
-  if (heroVideo) {
-    const end = 9;
-    heroVideo.addEventListener('timeupdate', () => { if (heroVideo.currentTime >= end) heroVideo.currentTime = 0; });
-    heroVideo.play().catch(() => {});
-  }
+  if (!heroVideo) return;
+
+  heroVideo.muted = true;
+  heroVideo.defaultMuted = true;
+  heroVideo.playsInline = true;
+
+  const startHeroVideo = () => {
+    if (document.visibilityState !== 'visible' || heroVideo.paused === false) return;
+    const attempt = heroVideo.play();
+    if (attempt && typeof attempt.catch === 'function') attempt.catch(() => {});
+  };
+
+  heroVideo.addEventListener('loadeddata', startHeroVideo);
+  heroVideo.addEventListener('canplay', startHeroVideo);
+  document.addEventListener('visibilitychange', startHeroVideo);
+  window.addEventListener('pageshow', startHeroVideo);
+
+  const heroPlayback = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) startHeroVideo();
+    else heroVideo.pause();
+  }, { threshold: 0.1 });
+  heroPlayback.observe(heroVideo);
+  startHeroVideo();
 })();
 
 (() => {
