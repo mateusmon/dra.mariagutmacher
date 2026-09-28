@@ -504,6 +504,10 @@ html:not(.js) .book{display:none}
 .a-photo img{object-position:50% 67%}
 .mini img{object-position:50% 62%}
 @media(max-width:860px){.trust-grid{grid-template-columns:1fr}.trust-grid article{padding-right:0;margin-right:0}.hero-card::before{background-position:50% 22%}}
+/* Teste de hero apenas com o vídeo, em tela inteira. */
+.hero-card::before{content:none}
+.hero-video{inset:0;width:100%;height:100%;-webkit-mask-image:none;mask-image:none;object-fit:cover}
+@media(max-width:860px){.hero-video{top:0;right:0;bottom:0;left:0;width:100%;height:100%;-webkit-mask-image:none;mask-image:none}}
 </style>
 </head>
 <body>
